@@ -2,9 +2,8 @@ import { useEffect, useState, useCallback, useRef, useMemo } from 'react'
 import ForceGraph2D from 'react-force-graph-2d'
 import ReactMarkdown from 'react-markdown'
 import axios from 'axios'
+import API_BASE from './config'
 import './App.css'
-
-const API_URL = 'http://localhost:8000'
 
 const NODE_COLORS = {
   SalesOrder: '#4A90D9',
@@ -38,10 +37,9 @@ const TYPE_POSITIONS = {
 // Extract entity IDs from LLM response text
 function extractEntityIds(text) {
   const ids = new Set()
-  // Match common patterns: numbers 6+ digits, or patterns like "740506"
   const patterns = [
-    /\b(\d{6,})\b/g,  // 6+ digit numbers (order IDs, billing docs, etc.)
-    /\b([A-Z]{2,}\d{3,})\b/g,  // Alphanumeric like "OR740506"
+    /\b(\d{6,})\b/g,
+    /\b([A-Z]{2,}\d{3,})\b/g,
   ]
   for (const pattern of patterns) {
     const matches = text.matchAll(pattern)
@@ -73,14 +71,13 @@ function App() {
     const fetchData = async () => {
       try {
         const [graphRes, statsRes] = await Promise.all([
-          axios.get(`${API_URL}/api/graph`),
-          axios.get(`${API_URL}/api/stats`),
+          axios.get(`${API_BASE}/api/graph`),
+          axios.get(`${API_BASE}/api/stats`),
         ])
 
         const { nodes, edges } = graphRes.data
 
-        // Add initial positions based on type for clustering
-        const processedNodes = nodes.map((n, i) => {
+        const processedNodes = nodes.map((n) => {
           const basePos = TYPE_POSITIONS[n.type] || { x: 0, y: 0 }
           const spread = 50
           return {
@@ -102,7 +99,8 @@ function App() {
         setStats(statsRes.data)
         setLoading(false)
       } catch (err) {
-        setError(err.message)
+        console.error('Failed to fetch graph:', err)
+        setError(err.message || 'Failed to connect to backend')
         setLoading(false)
       }
     }
@@ -157,7 +155,6 @@ function App() {
     const isFiltering = searchQuery.trim().length > 0
     const isDimmed = isFiltering && !isSearchMatch
 
-    // Draw glow for highlighted nodes
     if (isHighlighted) {
       const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, 20)
       gradient.addColorStop(0, node.color)
@@ -168,20 +165,17 @@ function App() {
       ctx.fill()
     }
 
-    // Draw node circle
     ctx.beginPath()
     ctx.arc(node.x, node.y, isHighlighted ? 8 : 6, 0, 2 * Math.PI)
     ctx.fillStyle = isDimmed ? 'rgba(100, 100, 100, 0.3)' : node.color
     ctx.fill()
 
-    // Draw border for selected or search matched
     if (isSelected || isSearchMatch) {
       ctx.strokeStyle = isSelected ? '#fff' : '#ffcc00'
       ctx.lineWidth = 2 / globalScale
       ctx.stroke()
     }
 
-    // Draw label
     ctx.fillStyle = isDimmed ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.85)'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'top'
@@ -199,7 +193,7 @@ function App() {
     setChatLoading(true)
 
     try {
-      const response = await axios.post(`${API_URL}/api/chat`, {
+      const response = await axios.post(`${API_BASE}/api/chat`, {
         message: userMessage,
         history: newMessages.slice(0, -1),
       })
@@ -215,7 +209,6 @@ function App() {
         },
       ])
 
-      // Highlight mentioned entity IDs in graph
       const mentionedIds = extractEntityIds(assistantMessage)
       if (mentionedIds.size > 0) {
         setHighlightedIds(mentionedIds)
@@ -237,18 +230,35 @@ function App() {
     }
   }
 
+  // Loading state with spinner
   if (loading) {
     return (
       <div className="app">
-        <div className="loading">Loading graph...</div>
+        <div className="loading-screen">
+          <div className="spinner"></div>
+          <div className="loading-text">Loading graph data...</div>
+          <div className="loading-subtext">This may take a moment on first load</div>
+        </div>
       </div>
     )
   }
 
+  // Error state with retry message
   if (error) {
     return (
       <div className="app">
-        <div className="error">Error: {error}</div>
+        <div className="error-screen">
+          <div className="error-icon">⚠</div>
+          <div className="error-title">Connection Error</div>
+          <div className="error-message">
+            {error.includes('Network') || error.includes('fetch')
+              ? 'Backend is waking up, please refresh in 30 seconds'
+              : `Error: ${error}`}
+          </div>
+          <button className="retry-button" onClick={() => window.location.reload()}>
+            Retry
+          </button>
+        </div>
       </div>
     )
   }

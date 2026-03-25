@@ -19,15 +19,21 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+
+# Virtual environments
 venv/
-.env
-.venv
+.venv/
 env/
 ENV/
+backend/venv/
+
+# Environment files (contains secrets)
+.env
+!.env.example
 
 # Node
 node_modules/
-dist/
+frontend/dist/
 dist-ssr/
 *.local
 .npm
@@ -50,10 +56,9 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Database (generated at runtime)
 backend/data/o2c.db
-backend/data/o2c.db
-backend/data/sap-o2c-data/
-.env
-__pycache__/
-node_modules/
-backend/venv/
+
+# NOTE: Do NOT ignore backend/data/sap-o2c-data/
+# This raw data is needed for the ingest script on Render

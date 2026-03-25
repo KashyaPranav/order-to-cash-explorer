@@ -28,6 +28,92 @@
   color: #E07A5F;
 }
 
+/* Loading Screen */
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 16px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #4A90D9;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.loading-subtext {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Error Screen */
+.error-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.error-icon {
+  font-size: 48px;
+  color: #E07A5F;
+}
+
+.error-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.error-message {
+  font-size: 14px;
+  color: #9ca3af;
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+.retry-button {
+  margin-top: 8px;
+  background: #4A90D9;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.retry-button:hover {
+  background: #5BA3EC;
+}
+
 /* Stats Bar */
 .stats-bar {
   display: flex;

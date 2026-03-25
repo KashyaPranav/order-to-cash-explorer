@@ -4,7 +4,7 @@ A visual analytics tool for exploring SAP Order-to-Cash (O2C) datasets. It rende
 
 Built with FastAPI, React, and Groq's LLaMA 3.3 70B model.
 
-![Screenshot](docs/screenshot.png)
+
 
 ---
 
