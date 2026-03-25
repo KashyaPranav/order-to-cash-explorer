@@ -141,13 +141,16 @@
   display: flex;
   flex: 1;
   min-height: 0;
+  width: 100%;
 }
 
 /* Graph Container */
 .graph-container {
-  flex: 7;
+  flex: 1;
   position: relative;
   height: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .graph-container canvas {
@@ -237,13 +240,15 @@
 
 /* Side Panel */
 .side-panel {
-  flex: 3;
+  width: 380px;
+  min-width: 380px;
   height: 100%;
   background: rgba(22, 24, 30, 0.95);
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .panel-header {
