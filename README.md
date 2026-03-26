@@ -1,5 +1,7 @@
 # Order to Cash Explorer
 
+Live : https://cashwhatpath.vercel.app/
+
 A visual analytics tool for exploring SAP Order-to-Cash (O2C) datasets. It renders business entities as an interactive graph and provides natural language querying via LLM, allowing users to ask questions like "Show me the top 5 customers by order value" and get instant answers backed by real SQL queries.
 
 Built with FastAPI, React, and Groq's LLaMA 3.3 70B model.
