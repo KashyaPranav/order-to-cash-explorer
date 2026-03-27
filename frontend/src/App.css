@@ -610,3 +610,364 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* ============================================
+   MOBILE RESPONSIVE DESIGN (max-width: 768px)
+   ============================================ */
+
+@media (max-width: 768px) {
+  .app {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  /* Stats Bar - smaller on mobile */
+  .stats-bar {
+    padding: 6px 12px;
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  /* Main Content - Stack vertically */
+  .main-content {
+    flex-direction: column;
+  }
+
+  /* Graph Container - takes less space on mobile */
+  .graph-container {
+    flex: 0.6;
+    min-height: 300px;
+    max-height: 50%;
+  }
+
+  /* Side Panel - full width, stacked below graph */
+  .side-panel {
+    width: 100%;
+    min-width: 100%;
+    flex: 1;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 50%;
+  }
+
+  /* Search Bar - adjust for mobile */
+  .search-bar {
+    top: 8px;
+    left: 8px;
+    gap: 8px;
+  }
+
+  .search-input {
+    width: 160px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .search-count {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  /* Legend - hide on small screens or make compact */
+  .legend {
+    bottom: 10px;
+    left: 10px;
+    padding: 8px 12px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 11px;
+    max-width: 150px;
+  }
+
+  .legend-title {
+    font-size: 9px;
+    margin-bottom: 6px;
+  }
+
+  .legend-item {
+    gap: 6px;
+    margin-bottom: 3px;
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .legend-label {
+    font-size: 10px;
+  }
+
+  /* Panel Header - smaller padding */
+  .panel-header {
+    padding: 12px 16px;
+  }
+
+  .panel-header h1 {
+    font-size: 14px;
+  }
+
+  /* Info Panel - smaller paddings */
+  .node-details {
+    padding: 12px 16px;
+  }
+
+  .node-id {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .node-fields {
+    gap: 8px;
+  }
+
+  .field-value {
+    font-size: 12px;
+  }
+
+  /* Chat Panel */
+  .chat-header {
+    padding: 10px 16px;
+  }
+
+  .chat-title {
+    font-size: 12px;
+    margin-bottom: 1px;
+  }
+
+  .chat-subtitle {
+    font-size: 10px;
+  }
+
+  /* Messages Container */
+  .messages-container {
+    padding: 12px 16px;
+    gap: 10px;
+  }
+
+  .chat-empty {
+    font-size: 12px;
+  }
+
+  .chat-empty p {
+    margin: 0 0 12px 0;
+  }
+
+  .chat-suggestions {
+    gap: 6px;
+  }
+
+  .chat-suggestions button {
+    padding: 7px 10px;
+    font-size: 11px;
+    min-height: 44px;
+  }
+
+  /* Message Bubbles - full width style */
+  .message {
+    max-width: 95%;
+  }
+
+  .message-bubble {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  /* Chat Input Container - adjust for mobile */
+  .chat-input-container {
+    padding: 10px 12px;
+    gap: 6px;
+  }
+
+  .chat-input {
+    padding: 8px 12px;
+    font-size: 12px;
+    min-height: 44px;
+  }
+
+  .send-button {
+    padding: 8px 12px;
+    font-size: 12px;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Error/Loading screens - adjust text */
+  .loading-text {
+    font-size: 14px;
+  }
+
+  .loading-subtext {
+    font-size: 12px;
+  }
+
+  .error-screen {
+    padding: 16px;
+  }
+
+  .error-message {
+    font-size: 13px;
+    max-width: 90%;
+  }
+
+  .retry-button {
+    padding: 10px 20px;
+    font-size: 13px;
+    min-height: 44px;
+  }
+
+  /* Mini stats - wrap on mobile */
+  .mini-stats {
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .mini-stat {
+    font-size: 12px;
+  }
+
+  .no-selection p {
+    font-size: 12px;
+  }
+}
+
+/* ============================================
+   SMALL MOBILE (max-width: 480px)
+   ============================================ */
+
+@media (max-width: 480px) {
+  .stats-bar {
+    padding: 4px 8px;
+    font-size: 10px;
+    gap: 4px;
+  }
+
+  .stats-divider {
+    display: none;
+  }
+
+  /* Stack items vertically on very small screens */
+  .search-bar {
+    flex-direction: column;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    width: auto;
+    gap: 4px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .search-count {
+    padding: 2px 6px;
+    font-size: 10px;
+  }
+
+  .legend {
+    display: none;
+  }
+
+  /* Graph container - less space on very small screens */
+  .graph-container {
+    flex: 0.5;
+    min-height: 250px;
+  }
+
+  .panel-header {
+    padding: 10px 12px;
+  }
+
+  .panel-header h1 {
+    font-size: 13px;
+  }
+
+  .node-details {
+    padding: 10px 12px;
+  }
+
+  .node-id {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .node-type {
+    font-size: 9px;
+  }
+
+  .field-key {
+    font-size: 9px;
+  }
+
+  .field-value {
+    font-size: 11px;
+  }
+
+  .chat-header {
+    padding: 8px 12px;
+  }
+
+  .chat-title {
+    font-size: 11px;
+  }
+
+  .chat-subtitle {
+    font-size: 9px;
+  }
+
+  .messages-container {
+    padding: 10px 12px;
+  }
+
+  .message-bubble {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .chat-input-container {
+    padding: 8px 10px;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .chat-input {
+    min-height: 40px;
+    padding: 6px 10px;
+    font-size: 11px;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .send-button {
+    min-height: 40px;
+    min-width: 40px;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .mini-stat {
+    font-size: 11px;
+  }
+
+  .chat-suggestions button {
+    padding: 6px 8px;
+    font-size: 10px;
+    min-height: 40px;
+  }
+
+  .error-message {
+    max-width: 100%;
+  }
+
+  .loading-text {
+    font-size: 13px;
+  }
+
+  .loading-subtext {
+    font-size: 11px;
+  }
+}

@@ -14,4 +14,17 @@ body {
   font-family: Inter, system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
 }
+
+/* Improve button/input touch targets on mobile */
+@media (max-width: 768px) {
+  input,
+  button,
+  textarea {
+    font-size: 16px;
+  }
+}
+
